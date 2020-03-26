@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="product">
+
+	<!-- 추천메뉴 보여주기 -->
+	<select id="spreadRecommend"
+	parameterType="java.lang.String"
+	resultType="com.kb.org.product.ProductDTO">
+		select pk, name, price, pcomment, imagelink 
+		from saleslist where recommend=#{recommend}
+	</select>
+
+	<!-- 메인페이지 상품 보여주기 -->
+	<select id="spreadProduct" resultType="com.kb.org.product.ProductDTO">
+		select * from saleslist
+		where PK like #{select}
+	</select>
+	
+	
+	
+<!-- 관리자모드 -->	
+
+	<!-- 추천메뉴 저장 -->
+	<update id="recommend_submit" parameterType="java.lang.String">
+		update saleslist set recommend='x' 
+	</update>
+
+	<!-- 추천메뉴 수정 -->
+	<update id="recommend_update"
+		parameterType="com.kb.org.product.ProductDTO">
+		update saleslist set recommend='o'
+		<where>
+		PK in
+		</where>
+		<foreach collection="recommendSeq" item="item" separator="," open="(" close=")">
+			#{item}
+		</foreach>
+	</update>
+	
+	<!-- 추천메뉴 삭제 -->
+	<delete id="recommend_delete" parameterType="java.lang.String">
+		update saleslist set recommend='x'
+		<where>
+		PK not in
+		</where>
+		<foreach collection="recommendSeq" item="item" separator="," open="(" close=")">
+			#{item}
+		</foreach>
+	</delete>
+	
+
+	<!-- 상품매니저 화면 -->
+	<select id="selectAll"
+	resultType="com.kb.org.product.ProductDTO">
+		select * from saleslist order by PK asc
+	</select>
+	
+	<!-- 상품삭제 -->
+	<delete id="deleterows" parameterType="java.lang.String">
+		delete from saleslist
+		<where>
+			PK in
+			<foreach collection="deleteSeq" item="item" separator="," open="(" close=")">
+				#{item}
+			</foreach>
+		</where>
+	</delete>
+	
+	<!-- 상품등록 -->
+	<insert id="insertrow" parameterType="com.kb.org.product.ProductDTO">
+		insert into saleslist
+		(PK, name, price, pcomment, imagelink)
+		values
+		(#{PK}, #{name}, #{price}, #{pcomment}, #{imagelink})
+	</insert>
+	
+	<!-- 수정화면에 select해주기 -->
+	<select id="selectrow" 
+		parameterType="java.lang.String"
+		resultType="com.kb.org.product.ProductDTO">
+		select * from saleslist where PK = #{seq}
+	</select>
+	
+	<!-- 상품 수정 -->
+	<update id="updaterow"
+		parameterType="com.kb.org.product.ProductDTO">
+		update saleslist set PK=#{PK}, name=#{name}, price=#{price}, 
+		pcomment=#{pcomment}, imagelink=#{imagelink}
+		where PK=#{PK}
+	</update>
+	
+</mapper>
