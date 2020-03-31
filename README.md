@@ -6,11 +6,12 @@
   * 프로젝트 기간 : 2019-10-31 ~ 2019-12-04
 
 ## 개발환경
-  * java
-  * spring
-  * oracle
-  * tomcat
-  * jquery, html5, css3, js, bootstrap
+  * java 1.8
+  * spring 3.x
+  * oracle DB 11g
+  * tomcat 8.5
+  * jquery 3.2.1
+  * html5, css3, js, bootstrap
 
 ## 주요기능
   * 메뉴 주문, 수량조절, 취소기능
