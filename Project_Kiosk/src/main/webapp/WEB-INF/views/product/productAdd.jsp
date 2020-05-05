@@ -5,14 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>메뉴 등록</title>
+<!-- 스마트에디터 -->
+<script type="text/javascript" src="<%=request.getContextPath() %>/se2/js/service/HuskyEZCreator.js"
+	charset="utf-8"></script>
 <%@ include file="../head.jsp" %>
-<script type="text/javascript">
-	function doRun(){
-		alert("상품이 추가되었습니다.");
-		$("#add").attr("action", "productAddProc.do");
-		$("#add").submit();
-	}
-</script>
+<script src="../resources/jquery/productmanager.js"></script>
 </head>
 <body>
 <div class="container" style="overflow:auto">
@@ -39,7 +36,7 @@
 				</tr>
 				<tr>
 					<td>제품설명</td>
-					<td><textarea class="form-control" placeholder="상품설명" id="pcomment" name="pcomment" maxlength="2048" style="height: 350px;"></textarea></td>
+					<td><textarea name="pcomment" id="pcomment" rows="10" cols="100"></textarea></td>
 				</tr>
 				<tr>
 					<td>제품이미지</td>
@@ -59,7 +56,27 @@
 					</td>
 				</tr>
 			</tbody>
-		</table>
+				<script type="text/javascript">
+					var oEditors = [];
+					nhn.husky.EZCreator.createInIFrame({
+						oAppRef : oEditors,
+						elPlaceHolder : "pcomment",
+						sSkinURI : "../se2/SmartEditor2Skin.html",
+						fCreator : "createSEditor2"
+					});
+				</script>
+				<script type="text/javascript">
+					function doRun(){
+						oEditors.getById["pcomment"].exec("UPDATE_CONTENTS_FIELD", []);
+						
+						var pcomment = document.getElementById("pcomment").value;
+						
+						alert("상품이 추가되었습니다.");
+						$("#add").attr("action", "productAddProc.do");
+						$("#add").submit();
+					}
+				</script>
+			</table>
 		<button type="submit" class="btn btn-primary" onclick="doRun();">등록</button>
 		<button type="button" class="btn btn-primary" onclick="doBack();">뒤로가기</button>
 		</form>

@@ -14,7 +14,7 @@
 </head>
 <body>
 <div class="container" style="overflow:auto">
-	<form action="" method="get" id="update">
+	<form action="" enctype="multipart/form-data" method="get" id="update">
 		<table class="table" style="text-align: center; border: 1px solid #dddddd">
 			<thead>
 				<tr>
@@ -39,8 +39,24 @@
 					<td><input type="text" class="form-control" placeholder="상품설명" id="pcomment" name="pcomment" value="${row.pcomment}" maxlength="2048" style="height: 350px;"></td>
 				</tr>
 				<tr>
-					<td>제품 이미지</td>
+<!--					<td>제품 이미지</td>
 					<td><input type="file" placeholder="사진" id="imagelink" name="imagelink" value="${row.imagelink}" maxlength="50"></td>
+-->
+					<td>제품이미지</td>
+					<td class="select_img"><img src="" />
+					<input type="file" id="imagelink" name="imagelink" value="${row.imagelink}">
+					<script>
+						$("#imagelink").change(function(){
+							if(this.files && this.files[0]) {
+								var reader = new FileReader;
+									reader.onload = function(data) {
+					    				 $(".select_img img").attr("src", data.target.result).width(100);        
+					   				}
+									reader.readAsDataURL(this.files[0]);
+					  		}
+					  });
+					 </script>
+					</td>
 				</tr>
 			</tbody>
 		</table>

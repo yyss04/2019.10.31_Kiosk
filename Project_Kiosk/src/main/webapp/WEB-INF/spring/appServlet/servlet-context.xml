@@ -11,6 +11,7 @@
 
 	<resources mapping="/resources/**" location="/resources/" />
 	
+	
 	<beans:bean id="dataSource"
 		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
@@ -54,5 +55,7 @@
             <beans:ref bean="Interceptor"/>
         </interceptor>
     </interceptors>
+    
+    <resources mapping="/se2/**" location="/se2/" />
 	
 </beans:beans>
