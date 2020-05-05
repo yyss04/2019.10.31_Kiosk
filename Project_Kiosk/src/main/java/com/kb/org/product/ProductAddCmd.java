@@ -19,14 +19,6 @@ public class ProductAddCmd {
 	}
 
 	public void excute(HttpServletRequest request, HttpServletResponse response) {
-//		String PK = "";
-//		String name = "";
-//		String price = "";
-//		String pcomment = "";
-//		String imagelink = "";
-//		String imagefile = "";
-
-//		String savefolder = "D:\\springsource1\\kiosk1\\src\\main\\webapp\\WEB-INF\\views\\menu";
 
 		System.out.println("폴더 만들기 전");
 		String savefolder = request.getSession().getServletContext().getRealPath("\\menu");
@@ -47,12 +39,7 @@ public class ProductAddCmd {
 			System.out.println("파일 저장 완료");
 			String imagefile = mr.getFilesystemName("imagelink");
 			System.out.println("imagefile = "+ imagefile);
-//			PK = mr.getParameter("PK");
-//			name = mr.getParameter("name");
-//			price = mr.getParameter("price");
-//			pcomment = mr.getParameter("pcomment");
-//			imagelink = "menu/" + (String) imagefile;
-//			System.out.println("pk =" + mr.getParameter("PK"));
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
