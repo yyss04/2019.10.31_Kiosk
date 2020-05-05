@@ -6,11 +6,18 @@
 <meta charset="UTF-8">
 <title>메뉴 등록</title>
 <%@ include file="../head.jsp" %>
-<script src="../resources/jquery/productmanager.js"></script>
+<script type="text/javascript">
+	function doRun(){
+		alert("상품이 추가되었습니다.");
+		$("#add").attr("action", "productAddProc.do");
+		$("#add").submit();
+	}
+</script>
 </head>
 <body>
 <div class="container" style="overflow:auto">
-	<form action="" method="get" id="add">
+	<form action="" enctype="multipart/form-data" method="post" id="add">
+	
 		<table class="table" style="text-align: center; border: 1px solid #dddddd">
 			<thead>
 				<tr>
@@ -36,7 +43,20 @@
 				</tr>
 				<tr>
 					<td>제품이미지</td>
-					<td><input type="file" placeholder="사진" id="imagelink" name="imagelink" maxlength="50"></td>
+					<td class="select_img"><img src="" />
+					<input type="file" id="imagelink" name="imagelink">
+					<script>
+						$("#imagelink").change(function(){
+							if(this.files && this.files[0]) {
+								var reader = new FileReader;
+									reader.onload = function(data) {
+					    				 $(".select_img img").attr("src", data.target.result).width(100);        
+					   				}
+									reader.readAsDataURL(this.files[0]);
+					  		}
+					  });
+					 </script>
+					</td>
 				</tr>
 			</tbody>
 		</table>

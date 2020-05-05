@@ -72,14 +72,13 @@ public class ProductController {
 	
 	// 상품 등록 DB저장
 	@RequestMapping(value = "/product/productAddProc.do")
-	public String insertProc(ProductDTO pd, 
+	public String insertProc(ProductDTO pdto, 
 						HttpServletRequest request,
-						HttpServletResponse response ,
-						String name){
+						HttpServletResponse response){
 		
-		ProductAddCmd padd = new ProductAddCmd(pd);
-		padd.excute(request, response); 
-		ss.insert("product.insertrow", pd);
+		ProductAddCmd padd = new ProductAddCmd();
+		pdto = padd.excute(request, response); 
+		ss.insert("product.insertrow", pdto);
 		return "redirect:productManager.do";
 	}
 	

@@ -34,12 +34,9 @@ function doDelete(){	// 메뉴삭제
 	}
 }
 
-function doRun(){	// 메뉴등록
+function doRun(){	// 메뉴수정
 	$("#update").attr("action", "productUpdateProc.do");
 	$("#update").submit();
-	
-	$("#add").attr("action", "productAddProc.do");
-	$("#add").submit();
 }
 
 $(document).ready(function(){
