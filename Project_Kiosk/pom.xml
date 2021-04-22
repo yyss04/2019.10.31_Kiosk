@@ -68,7 +68,7 @@
 		<dependency>
 		    <groupId>org.mybatis</groupId>
 		    <artifactId>mybatis</artifactId>
-		    <version>3.5.3</version>
+		    <version>3.5.6</version>
 		</dependency>
 		
 		<!-- spring-jdbc jar 추가 (maven에서 복사한후 위에 spring버전 복사해서 ${}붙여넣기)-->	
